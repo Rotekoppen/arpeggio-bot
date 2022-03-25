@@ -14,7 +14,7 @@ module.exports = {
     const player = await this.client.dtune.getPlayer(interaction.guildId)
 
     if (player) {
-      await player.pause()
+      await player.shuffleQueue()
       await reply
       interaction.editReply({ content: "Shuffled!  " + emoji("working"), ephemeral: true });
     }else {
