@@ -1,0 +1,15 @@
+:root {
+  --bg0: #2e3440;
+  --bg1: #3b4252;
+  --bg2: #434c5e;
+  --bg3: #4c566a;
+  --fg0: #d8dee9;
+  --fg1: #e5e9f0;
+  --fg2: #eceff4;
+
+  --ac-red: #bf616a;
+  --ac-ora: #d08770;
+  --ac-yel: #ebcb8b;
+  --ac-grn: #a3be8c;
+  --ac-pur: #b48ead;
+}

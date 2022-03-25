@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/public/dashboard.css">
+    <link rel="stylesheet" href="/public/colors.css">
+    <script src="/vue" charset="utf-8"></script>
+    <script src="/public/dashboard.js" defer charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="header-section header-nav-links">
+          <button class="header-nav-link" v-on:click="setTab('playlist')">Playlist</button>
+          <button class="header-nav-link" v-on:click="setTab('search')">Search</button>
+          <button class="header-nav-link" v-on:click="setTab('player')">Player</button>
+        </div>
+        <div class="header-section">
+          <a href="/logout" class="header-nav-link">Log out</a>
+        </div>
+      </header>
+      <div v-if="tab == 'playlist'" class="dashboard-tab dashboard-tab-playlist">
+        <div class="playlist">
+          <div class="playlist-track" v-if="playlist.length < 5">To be in the autoplay pool, you have to have at least 5 tracks in your playlist</div>
+          <div class="playlist-track" v-for="track in playlist">
+            <div class="playlist-track__thumbnail" :style="{ 'background-image': 'url(' + track.thumbnail + ')' }">
+              <div class="playlist-track__thumbnail__duration">{{ track.lengthFormatted }}</div>
+            </div>
+            <div class="playlist-track__details">
+              <div class="playlist-track__details__text">
+                {{ track.title }}
+              </div>
+              <div class="playlist-track__details__buttons">
+                <button class="header-nav-link" v-on:click="this.playlistRemoveTrack(track)">Remove from playlist</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="tab == 'search'" class="dashboard-tab dashboard-tab-search">
+        <div class="playlist">
+          <input class="search__bar" v-model="searchQuery" v-on:keyup.enter="setSearch(searchQuery)" type="text" placeholder="Type here to search">
+          <div class="search__results">
+            <div class="search-result" v-for="result in searchResults.items">
+              <div class="playlist-track__thumbnail" :style="{ 'background-image': 'url(' + result.thumbnail.url + ')' }">
+                <div class="playlist-track__thumbnail__duration">{{ result.durationRaw }}</div>
+              </div>
+              <div class="playlist-track__details">
+                <div class="playlist-track__details__text">
+                  {{ result.title }}
+                </div>
+                <div class="playlist-track__details__buttons">
+                  <button class="header-nav-link" v-on:click="this.playlistAddTrack(result)">Add to playlist</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

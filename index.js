@@ -47,10 +47,14 @@ client.on('interactionCreate', async interaction => {
 client.data = require('./util/data.js');
 client.data.promise = client.data.init()
 
+// Different modules of the bot
 client.dtune = require('dtune');
 client.trackCreator = require('dtune/trackCreator.js');
 client.dtuneChecks = require('dtune/userCheck.js');
 client.playlist = require('./util/playlists.js')(client, client.data, client.dtune);
 client.dtuneAnnouncer = require('./util/announcer.js')(client, client.dtune);
+client.once('ready', () => {
+  client.dashboard = require('./util/dashboard')(client, client.dtune, client.data);
+});
 
 client.login(config.tokens.discord);
