@@ -27,8 +27,11 @@ module.exports = {
 
 		const embed = new MessageEmbed()
 		.setTitle(`${emoji("dance")} Now playing:`)
-		.setImage(track.thumbnail)
-		.setDescription(`[${track.metadata.title} - ${mmss} / ${track.metadata.lengthFormatted}](${track.metadata.url})`)
+		.setImage(track.metadata.thumbnail)
+		.setDescription(`[${track.metadata.title}](${track.metadata.url})`)
+    .setFooter({
+      text: `${mmss} / ${track.metadata.lengthFormatted}${player.repeatMode != "none" ? " - " + player.repeatMode : ""}`
+    })
 		//.setFooter("Requested by " + track.requester.username, 'https://cdn.discordapp.com/avatars/' + track.requester.id + "/" + track.requester.avatar + ".webp")
 
 		interaction.reply({ embeds: [embed], ephemeral: true });
