@@ -1,0 +1,13 @@
+{
+  "name": "bot",
+  "main": "index.js",
+  "dependencies": {
+    "@discordjs/rest": "^0.3.0",
+    "discord-api-types": "^0.20.2",
+    "discord.js": "^13.2.0",
+    "dtune": "~0.2.0",
+    "form-data": "^4.0.0",
+    "mongodb": "^4.2.2",
+    "node-fetch": "^3.1.0"
+  }
+}
