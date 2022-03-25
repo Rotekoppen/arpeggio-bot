@@ -29,7 +29,7 @@ module.exports = (client, data, dtune) => {
   function addTrack(userId, track) {
     data.updateUser(userId, {
       $push: {
-        playlist: track.info
+        playlist: track.metadata
       }
     })
   }
