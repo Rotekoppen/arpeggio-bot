@@ -12,6 +12,8 @@ client.on('ready', () => {
   		Routes.applicationCommands(client.user.id),
   		{ body: commands }
   	);
+    console.log("Deployed the global bot commands.");
+    client.destroy()
   })()
 });
 
