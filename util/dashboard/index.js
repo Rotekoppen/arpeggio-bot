@@ -74,6 +74,11 @@ module.exports = async function(client, dtune, data) {
     } // auth success
   );
 
+  app.get('/invite', function(req, res) {
+      res.redirect(config.inviteLink.split("@@@").join(client.user.id))
+    }
+  );
+
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');

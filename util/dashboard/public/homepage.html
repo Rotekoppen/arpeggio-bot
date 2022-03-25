@@ -12,15 +12,8 @@
       <h1 class="title-card__title">Captain Hook</h1>
       <div class="title-card__links">
         <a class="title-card__link big-button bg-green" href="/dashboard">To the dashboard</a>
-        <a class="title-card__link big-button" id="invite-link" href="">Get bot</a>
+        <a class="title-card__link big-button" href="/invite">Get bot</a>
       </div>
     </section>
-    <script type="text/javascript">
-      let url = document.URL.split("/").join("%2F").split(":").join("%3A")
-
-      document.getElementById("invite-link").href =
-        "https://discord.com/oauth2/authorize?client_id=709371098873200683&&redirect_uri=@@@thanks&scope=applications.commands%20bot"
-        .split("@@@").join(url)
-    </script>
   </body>
 </html>
