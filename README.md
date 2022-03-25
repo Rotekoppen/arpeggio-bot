@@ -2,4 +2,4 @@
 
 Discord music bot with exra features.
 
-Based on [dtune](dtune.js.org)
+Based on [dtune](https://dtune.js.org)
