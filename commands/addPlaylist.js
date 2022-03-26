@@ -17,7 +17,7 @@ module.exports = {
 		let track = await this.client.trackCreator.createTrackWithQuery(query)
     if (track.constructor !== Array) {
       this.client.playlist.addTrack(interaction.user.id, track)
-      interaction.editReply({ content: "Added to playlist: " + track.info.title, ephemeral: true });
+      interaction.editReply({ content: "Added to playlist: " + track.metadata.title, ephemeral: true });
     } else {
       track.forEach((item, i) => {
         this.client.playlist.addTrack(interaction.user.id, item)
