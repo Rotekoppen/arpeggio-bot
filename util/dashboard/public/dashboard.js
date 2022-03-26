@@ -47,7 +47,7 @@ const Dashboard = {
       getJson("/playlist").then((playlist) => this.playlist = playlist)
     },
     playlistRemoveTrack(track) {
-      get("/playlist/remove/" + track._id).then(this.playlistUpdate)
+      get("/playlist/remove/" + track.uid).then(this.playlistUpdate)
     },
     playlistAddTrack(track) {
       get("/playlist/add/" + btoa(track.url).split("/").join("-")).then(this.playlistUpdate)

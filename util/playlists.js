@@ -1,7 +1,9 @@
 module.exports = (client, data, dtune) => {
-  function queueTrack(guildId) {
-    let player = client.dtune.getPlayer(guildId)
-    client.channels.fetch(player.channel)
+  async function queueTrack(guildId) {
+    return new Promise((resolve, reject) => {
+
+      let player = client.dtune.getPlayer(guildId)
+      client.channels.fetch(player.channel)
       .then(async channel => {
         if (!player.playlistTrack) {
           let tries = 10
@@ -16,7 +18,7 @@ module.exports = (client, data, dtune) => {
                   let track = await client.trackCreator.createTrackWithQuery(playlistTrack.url)
                   player.playlistTrack = track
                   if (dtune.preloading) track.preload()
-                  return
+                  resolve();
                 }
               }
             }
@@ -24,6 +26,10 @@ module.exports = (client, data, dtune) => {
           }
         }
       })
+
+    });
+
+
   }
 
   function addTrack(userId, track) {
@@ -38,16 +44,16 @@ module.exports = (client, data, dtune) => {
     data.updateUser(userId, {
       $pull: {
         playlist: {
-          _id: trackId
+          uid: trackId
         }
       }
     })
   }
 
   client.dtune.events.on('trackEnded', async (player, track) => {
-    if (player.queue.length <= 2) {
+    if (player.queue.length <= 1) {
       if (player.autoPlay) {
-        if (!player.playlistTrack) queueTrack(player.guildId);
+        if (!player.playlistTrack) await queueTrack(player.guildId);
         player.addTrack(player.playlistTrack)
         player.playlistTrack = undefined
       }
