@@ -15,6 +15,7 @@ module.exports = {
       .setDescription('Disable queueing more songs when queue is empty.')
     ),
   async execute(interaction) {
+    const player = this.client.dtune.getPlayer(interaction.guild.id)
     if (interaction.options.getSubcommand() === 'on') {
       let player = this.client.dtuneInterface.getPlayer(interaction.guild.id)
       if (player) {
@@ -29,11 +30,11 @@ module.exports = {
         content: "Autoplay is now enabled.",
         ephemeral: true
       })
-      if (this.client.dtuneInterface.getPlayer(interaction.guild.id).queue.length < 2) {
+      if (player.queue.length <= 1) {
         this.playlist.queueTrack(interaction.guild.id)
       }
     } else {
-      this.client.dtuneInterface.getPlayer(interaction.guild.id).autoPlay = false
+      player.autoPlay = false
       await this.client.data.updateGuild(interaction.guild.id, {
         $set: {
           autoPlay: false
