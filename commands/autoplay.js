@@ -17,7 +17,6 @@ module.exports = {
   async execute(interaction) {
     const player = this.client.dtune.getPlayer(interaction.guild.id)
     if (interaction.options.getSubcommand() === 'on') {
-      let player = this.client.dtuneInterface.getPlayer(interaction.guild.id)
       if (player) {
         player.autoPlay = true
       }
@@ -30,11 +29,13 @@ module.exports = {
         content: "Autoplay is now enabled.",
         ephemeral: true
       })
-      if (player.queue.length <= 1) {
+      if (player?.queue.length <= 1) {
         this.playlist.queueTrack(interaction.guild.id)
       }
     } else {
-      player.autoPlay = false
+      if (player) {
+        player.autoPlay = false
+      }
       await this.client.data.updateGuild(interaction.guild.id, {
         $set: {
           autoPlay: false

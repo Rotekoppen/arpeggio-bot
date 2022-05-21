@@ -7,6 +7,11 @@ const {
 
 module.exports = (client) => {
   client.dtune.events.on('playingTrack', async (player, track) => {
+    if (!track.replays) {
+      track.replays = 0
+    }
+    track.replays += 1
+    let replays = track.replays
     const guild = await client.data.getGuild(player.guildId);
     if (guild.announcementChannel) {
       client.channels.fetch(guild.announcementChannel)
@@ -21,10 +26,10 @@ module.exports = (client) => {
             components: [
               new MessageActionRow()
               .addComponents(
-                new MessageButton()
-                .setCustomId('addtoplaylist-' + track.metadata.uid)
-                .setLabel('Add to playlist')
-                .setStyle('SECONDARY'),
+                //new MessageButton() // Removed due to not being used
+                //.setCustomId('addtoplaylist-' + track.metadata.uid)
+                //.setLabel('Add to playlist')
+                //.setStyle('SECONDARY'),
                 new MessageButton()
                 .setCustomId('skip-' + track.metadata.uid)
                 .setLabel('Skip')
@@ -38,6 +43,7 @@ module.exports = (client) => {
           });
 
           collector.on('collect', async i => {
+            let skipped = false
             if (i.customId === 'addtoplaylist-' + track.metadata.uid) {
               client.playlist.addTrack(i.user.id, track)
               i.reply({
@@ -45,10 +51,10 @@ module.exports = (client) => {
                 content: "Added to your playlist"
               })
             }
-
-            if (i.customId === 'skip-' + track.metadata.uid) {
+            if (i.customId === 'skip-' + track.metadata.uid && !skipped && player.queue[0]?.replays == replays) {
               if (player.queue[0]?.uid == track.metadata.uid) {
-                player.skipCurrentTrack()
+                skipped = true
+                player.skipCurrentTrack();
                 i.reply({
                   ephemeral: true,
                   content: "Skipped!"

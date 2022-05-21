@@ -13,7 +13,7 @@ module.exports = {
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES],
     disableMentions: 'everyone'
   },
-  inviteLink: 'https://discord.com/oauth2/authorize?client_id=@@@&permissions=0&scope=applications.commands%20bot',
+  inviteLink: 'https://discord.com/oauth2/authorize?client_id=@@@&permissions=0&scope=applications.commands%20bot', // @@@ gets replaced with bot ID automatically
   web: {
     rootUrl: 'https://rootUrl',
     sessionSecret: 'sessionSecret',

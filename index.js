@@ -33,7 +33,7 @@ client.on('interactionCreate', async interaction => {
     console.error(error);
 
     const errorMsg = {
-      content: emoji("crash") + " There was an error executing the command: " + error,
+      content: emoji("crash") + " There was an error executing the command. Please send the error and what you did to the bot owner: " + error,
       ephemeral: true
     }
     if (interaction.replied) {
@@ -48,13 +48,13 @@ client.data = require('./util/data.js');
 client.data.promise = client.data.init()
 
 // Different modules of the bot
-client.dtune = require('dtune');
-client.trackCreator = require('dtune/trackCreator.js');
-client.dtuneChecks = require('dtune/userCheck.js');
-client.playlist = require('./util/playlists.js')(client, client.data, client.dtune);
+client.dtune = require('dtune'); // Dev package please remember to put back before push
+client.trackCreator = require('dtune/trackCreator.js'); // Dev package
+client.dtuneChecks = require('dtune/userCheck.js'); // Dev package
+client.playlist = require('./util/playlists.js')(client, client.data, client.dtune); // Disabled until bot is usable again
 client.dtuneAnnouncer = require('./util/announcer.js')(client, client.dtune);
 client.once('ready', () => {
-  client.dashboard = require('./util/dashboard')(client, client.dtune, client.data);
+  // client.dashboard = require('./util/dashboard')(client, client.dtune, client.data); // Disabled until bot is usable again
 });
 
 client.login(config.tokens.discord);
