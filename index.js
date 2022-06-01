@@ -18,7 +18,7 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
-  console.log(`Logged in as ${client.user.tag}! - Add the bot to your server using:\n'${config.inviteLink.split("@@@").join(client.user.id)}'`)
+  console.log(`Logged in as ${client.user.tag}!`)
 });
 
 client.on('interactionCreate', async interaction => {
