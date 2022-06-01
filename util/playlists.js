@@ -14,7 +14,6 @@ module.exports = (client, data, dtune) => {
       if (!userdata.playlist) {
         return
       }
-      console.log("Fetching playlist");
       const playlist = await play.playlist_info(userdata.playlist, { incomplete : true })
       if (playlist?.videoCount > 5) {
         playlistCache[id] = playlist

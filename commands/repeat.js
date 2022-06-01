@@ -8,9 +8,7 @@ module.exports = {
 			.setName('mode')
 			.setRequired(true)
 			.setDescription('Title of track or url to play')
-      .addChoice('none', 'none')
-			.addChoice('all', 'all')
-			.addChoice('single', 'single')
+      .addChoices({name: 'none', value: 'none'},{name: 'all', value: 'all'},{name: 'single', value: 'single'})
 		),
 	async execute(interaction) {
 		if (!await this.client.dtuneChecks.isInVoice(interaction)) return interaction.reply({ content: "You are not in a voice channel", ephemeral: true });

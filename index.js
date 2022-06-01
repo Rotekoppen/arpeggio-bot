@@ -4,6 +4,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const config = require('./config.js');
 const client = new Discord.Client(config.discordjs);
+client.config = config
 
 const emoji = require('./util/emoji.js')
 
@@ -53,7 +54,9 @@ client.trackCreator = require('dtune/trackCreator.js'); // Dev package
 client.dtuneChecks = require('dtune/userCheck.js'); // Dev package
 client.playlist = require('./util/playlists.js')(client, client.data, client.dtune); // Disabled until bot is usable again
 client.dtuneAnnouncer = require('./util/announcer.js')(client, client.dtune);
+client.cli = require('./util/cli.js')(client);
 client.once('ready', () => {
+  client.cli.startCLI();
   // client.dashboard = require('./util/dashboard')(client, client.dtune, client.data); // Disabled until bot is usable again
 });
 
