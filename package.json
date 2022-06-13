@@ -6,16 +6,14 @@
     "CLI-UI": "github:Rotekoppen/node-cli-ui",
     "discord-api-types": "^0.20.2",
     "discord.js": "^13.7.0",
-    "dtune": "0.2.3",
+    "dtune": "0.2.4",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "form-data": "^4.0.0",
-    "libsodium-wrappers": "^0.7.10",
     "mongodb": "^4.2.2",
     "node-fetch": "^3.1.0",
     "passport": "^0.5.2",
     "passport-discord": "^0.1.4",
-    "play-dl": "^1.9.4",
     "vue": "^3.2.31"
   }
 }
