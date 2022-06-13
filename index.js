@@ -1,4 +1,4 @@
-console.log("Starting bot! - Escape the censored internet!")
+console.log("Starting bot!")
 
 const fs = require('fs');
 const Discord = require('discord.js');
@@ -58,6 +58,7 @@ client.cli = require('./util/cli.js')(client);
 client.once('ready', () => {
   client.cli.startCLI();
   // client.dashboard = require('./util/dashboard')(client, client.dtune, client.data); // Disabled until bot is usable again
+  console.log("Type help for available commands")
 });
 
 client.login(config.tokens.discord);
