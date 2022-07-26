@@ -19,7 +19,7 @@ module.exports = {
 		});
 
 		const embed = new MessageEmbed()
-		.setTitle(`${emoji("dance")} Queue:`)
+		.setTitle(`${emoji("dance")} Queue: ` + player.autoPlay ? "( Autoplay enabled )" : "")
 		.setDescription(message)
 
 		if (length > stop) {

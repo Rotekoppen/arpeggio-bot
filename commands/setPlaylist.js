@@ -8,12 +8,22 @@ module.exports = {
 		.setDescription('Sets an URL to your playlist. The playlist needs to be unlisted or public and has more than 5 songs.')
 		.addStringOption(option => option
 			.setName('query')
-			.setRequired(true)
 			.setDescription('Url to playlist')
 		),
 	async execute(interaction) {
 		const query = await interaction.options.getString('query');
 		await interaction.reply({ content: "Working... " + emoji("working"), ephemeral: true });
+
+    if (!query) {
+      this.client.data.updateUser(interaction.user.id, {
+        $set: {
+          playlist: undefined
+        }
+      })
+
+      interaction.editReply({ content: "Removed the set playlist", ephemeral: true });
+      return
+    }
 
     if (await play.validate(query) != 'yt_playlist') {
       interaction.editReply({ content: "That is not a Youtube Playlist URL", ephemeral: true });
