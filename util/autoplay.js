@@ -72,7 +72,6 @@ module.exports = (client, data, dtune) => {
 
     let method = Math.random() > 0.5 ? "lastfm" : "playlist"
     let success = false
-    console.log(success, method, userdata);
 
     if (userdata[method]) {
       success = await functions[method]()
@@ -85,22 +84,18 @@ module.exports = (client, data, dtune) => {
         success = await functions["lastfm"]()
       }
     }
-    console.log(success, method);
     if (success) {
       let playlistTrack = undefined
 
       if (method == "lastfm") {
-        console.log(lastfmCache)
         playlistTrack = lastfmCache[id].videos[Math.floor(Math.random() * lastfmCache[id].videos.length)];
       }
       if (method == "playlist") {
-        console.log(playlistCache)
         playlistTrack = playlistCache[id].videos[Math.floor(Math.random() * playlistCache[id].videos.length)];
       }
       if (playlistTrack) {
         let track = await client.trackCreator.createTrackWithQuery(playlistTrack)
         if (dtune.preloading) track.preload()
-        console.log(playlistTrack)
         return track
       }
     }
@@ -120,13 +115,11 @@ module.exports = (client, data, dtune) => {
         if (!player.playlistTrack) {
           let tries = 10
           while (tries > 0 && !player.playlistTrack) {
-            console.log("Trying to queue track")
             let member = channel.members.random()
             if (!member.user.bot) {
 
               let track = await getRandomUserTrack(member.id)
               if (track) {
-                console.log("Success")
                 player.playlistTrack = track
                 resolve();
               }
@@ -140,7 +133,6 @@ module.exports = (client, data, dtune) => {
   }
 
   client.dtune.events.on('trackEnded', async (player, track) => {
-    console.log("trackEnded", player.playlistTrack)
     if (player.queue.length <= 1) {
       if (player.autoPlay) {
         if (!player.playlistTrack) await queueTrack(player.guildId);
