@@ -6,7 +6,7 @@
     "CLI-UI": "github:Rotekoppen/node-cli-ui",
     "discord-api-types": "^0.37.20",
     "discord.js": "^14.6.0",
-    "dtune": "0.2.5",
+    "dtune": "0.2.7",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "form-data": "^4.0.0",
