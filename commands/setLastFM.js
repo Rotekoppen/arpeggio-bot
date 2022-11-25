@@ -14,7 +14,7 @@ module.exports = {
 		const username = await interaction.options.getString('username');
 		await interaction.reply({ content: "Working... " + emoji("working"), ephemeral: true });
 
-    if (!query) {
+    if (!username) {
       this.client.data.updateUser(interaction.user.id, {
         $set: {
           lastfm: undefined

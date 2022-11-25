@@ -1,8 +1,8 @@
 const emoji = require('./emoji.js');
 const {
-  MessageEmbed,
-  MessageActionRow,
-  MessageButton
+  ActionRowBuilder,
+  ButtonBuilder,
+  EmbedBuilder
 } = require('discord.js');
 
 module.exports = (client) => {
@@ -18,22 +18,22 @@ module.exports = (client) => {
         .then(async channel => {
           let message = await channel.send({
             embeds: [
-              new MessageEmbed()
+              new EmbedBuilder()
               .setTitle(`${emoji("dance")} Now playing:`)
               .setDescription(`[${track.metadata.title} - ${track.metadata.lengthFormatted}](${track.url})`)
               .setImage(track.metadata.thumbnail)
             ],
             components: [
-              new MessageActionRow()
+              new ActionRowBuilder()
               .addComponents(
                 //new MessageButton() // Removed due to not being used
                 //.setCustomId('addtoplaylist-' + track.metadata.uid)
                 //.setLabel('Add to playlist')
                 //.setStyle('SECONDARY'),
-                new MessageButton()
+                new ButtonBuilder()
                 .setCustomId('skip-' + track.metadata.uid)
                 .setLabel('Skip')
-                .setStyle('SECONDARY'),
+                .setStyle('Secondary'),
               )
             ]
           })

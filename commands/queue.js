@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const emoji = require('../util/emoji.js');
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
 			message += `[${song.title} - ${song.lengthFormatted}](${song.url})\n`
 		});
 
-		const embed = new MessageEmbed()
+		const embed = new EmbedBuilder()
 		.setTitle(`${emoji("dance")} Queue: ` + player.autoPlay ? "( Autoplay enabled )" : "")
 		.setDescription(message)
 

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const emoji = require('../util/emoji.js');
 
 module.exports = {
@@ -25,13 +25,13 @@ module.exports = {
     mmss += ss
 
 
-		const embed = new MessageEmbed()
+	const embed = new EmbedBuilder()
 		.setTitle(`${emoji("dance")} Now playing:`)
 		.setImage(track.metadata.thumbnail)
 		.setDescription(`[${track.metadata.title}](${track.metadata.url})`)
-    .setFooter({
-      text: `${mmss} / ${track.metadata.lengthFormatted}${player.repeatMode != "none" ? " - " + player.repeatMode : ""}`
-    })
+		.setFooter({
+			text: `${mmss} / ${track.metadata.lengthFormatted}${player.repeatMode ? player.repeatMode != "none" ? " - " + player.repeatMode : "" : ""}`
+		})
 		//.setFooter("Requested by " + track.requester.username, 'https://cdn.discordapp.com/avatars/' + track.requester.id + "/" + track.requester.avatar + ".webp")
 
 		interaction.reply({ embeds: [embed], ephemeral: true });

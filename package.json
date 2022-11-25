@@ -2,17 +2,17 @@
   "name": "bot",
   "main": "index.js",
   "dependencies": {
-    "@discordjs/rest": "^0.3.0",
+    "@discordjs/rest": "^1.3.0",
     "CLI-UI": "github:Rotekoppen/node-cli-ui",
-    "discord-api-types": "^0.20.2",
-    "discord.js": "^13.7.0",
+    "discord-api-types": "^0.37.20",
+    "discord.js": "^14.6.0",
     "dtune": "0.2.4",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "form-data": "^4.0.0",
     "mongodb": "^4.2.2",
     "node-fetch": "^3.1.0",
-    "passport": "^0.5.2",
+    "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
     "vue": "^3.2.31"
   }

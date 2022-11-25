@@ -57,7 +57,7 @@ client.dtuneAnnouncer = require('./util/announcer.js')(client, client.dtune);
 client.cli = require('./util/cli.js')(client);
 client.once('ready', () => {
   client.cli.startCLI();
-  // client.dashboard = require('./util/dashboard')(client, client.dtune, client.data); // Disabled until bot is usable again
+  //client.dashboard = require('./Stache/dashboard')(client, client.dtune, client.data); // Disabled until bot is usable again
   console.log("Type help for available commands")
 });
 
